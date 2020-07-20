@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
       password: this.password,
       email: this.email,
     };
+
     this._authService.login(userCreditinal).subscribe((data) => {
       console.log(data);
       this.router.navigate(['']);
