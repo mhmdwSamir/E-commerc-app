@@ -24,6 +24,12 @@ export class RegisterComponent implements OnInit {
       Validators.pattern(/^[A-Za-z]\w{7,14}$/),
     ]),
     email: new FormControl(null, [Validators.required, Validators.email]),
+    confirmpassword: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(15),
+      Validators.pattern(/^[A-Za-z]\w{7,14}$/),
+    ]),
   });
   constructor(private _authService: AuthService, private router: Router) {}
 

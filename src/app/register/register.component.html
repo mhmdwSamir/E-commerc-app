@@ -38,6 +38,7 @@
         invalid formate
       </mat-error>
     </ng-container>
+    <!-- Feild email   -->
     <mat-form-field class="inputfeild">
       <mat-label>*Email</mat-label>
       <input
@@ -61,7 +62,7 @@
         invalid Email
       </mat-error>
     </ng-container>
-
+    <!-- Feild password   -->
     <mat-form-field class="inputfeild">
       <mat-label>Password</mat-label>
       <input
@@ -107,6 +108,62 @@
       </mat-error>
       <mat-error
         *ngIf="formRegister.get('password').errors.pattern as patternError"
+      >
+        InValid Formate
+      </mat-error>
+    </ng-container>
+    <mat-form-field class="inputfeild">
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        type="password"
+        name="confirmpassword"
+        formControlName="confirmpassword"
+        placeholder="confirmed password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <ng-container
+      *ngIf="
+        formRegister.get('confirmpassword').errors &&
+        formRegister.get('confirmpassword').touched
+      "
+    >
+      <mat-error *ngIf="formRegister.get('confirmpassword').errors.required">
+        confirm password Feild is required
+      </mat-error>
+
+      <mat-error
+        *ngIf="
+          formRegister.get('confirmpassword').errors.minlength as minLengthError
+        "
+      >
+        confirmpassword Should be at least
+        {{ minLengthError.requiredLength }} but you entered
+        {{ minLengthError.actualLength }}
+      </mat-error>
+      <mat-error
+        *ngIf="
+          formRegister.get('confirmpassword').errors.maxlength as maxLengthError
+        "
+      >
+        confirmpassword Should be at most
+        {{ maxLengthError.requiredLength }} but you entered
+        {{ maxLengthError.actualLength }}
+      </mat-error>
+      <mat-error
+        *ngIf="
+          formRegister.get('confirmpassword').errors.pattern as patternError
+        "
       >
         InValid Formate
       </mat-error>
