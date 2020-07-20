@@ -11,9 +11,19 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   hide: true;
   formRegister = new FormGroup({
-    name: new FormControl(null, Validators.required),
-    password: new FormControl(null, Validators.required),
-    email: new FormControl(null, Validators.required),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(15),
+      Validators.pattern(/^[a-zA-Z0-9]/),
+    ]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(15),
+      Validators.pattern(/^[A-Za-z]\w{7,14}$/),
+    ]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
   });
   constructor(private _authService: AuthService, private router: Router) {}
 

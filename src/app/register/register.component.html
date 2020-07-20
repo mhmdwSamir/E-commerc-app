@@ -23,7 +23,7 @@
       <mat-error
         *ngIf="formRegister.get('name').errors.minlength as minlengthError"
       >
-        Name must be at least
+        *Name must be at least
         {{ minlengthError.requiredLength }} chars but you enterd
         {{ minlengthError.actualLength }} chars
       </mat-error>
@@ -48,6 +48,19 @@
         placeholder="Your Email"
       />
     </mat-form-field>
+    <ng-container
+      *ngIf="
+        formRegister.get('email').errors && formRegister.get('email').touched
+      "
+    >
+      <mat-error *ngIf="formRegister.get('email').errors.required">
+        *Email Feild is required
+      </mat-error>
+
+      <mat-error *ngIf="formRegister.get('email').errors.email">
+        *invalid Email
+      </mat-error>
+    </ng-container>
 
     <mat-form-field class="inputfeild">
       <mat-label>*Password</mat-label>
@@ -64,10 +77,41 @@
         (click)="hide = !hide"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide"
-      >
+      > 
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-      </button> -->
+      </button> 
+      -->
     </mat-form-field>
+    <ng-container
+      *ngIf="
+        formRegister.get('password').errors &&
+        formRegister.get('password').touched
+      "
+    >
+      <mat-error *ngIf="formRegister.get('password').errors.required">
+        *Password Feild is required
+      </mat-error>
+
+      <mat-error
+        *ngIf="formRegister.get('password').errors.minlength as minLengthError"
+      >
+        *password Should be at least {{ minLengthError.requiredLength }} but you
+        entered
+        {{ minLengthError.actualLength }}
+      </mat-error>
+      <mat-error
+        *ngIf="formRegister.get('password').errors.maxlength as maxLengthError"
+      >
+        *password Should be at most {{ maxLengthError.requiredLength }} but you
+        entered
+        {{ maxLengthError.actualLength }}
+      </mat-error>
+      <mat-error
+        *ngIf="formRegister.get('password').errors.pattern as patternError"
+      >
+        *InValid Formate
+      </mat-error>
+    </ng-container>
   </form>
   <button mat-raised-button color="warn">reset</button>
   <button mat-raised-button color="primary" (click)="register()">
