@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  hide: true;
   formRegister = new FormGroup({
     name: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
