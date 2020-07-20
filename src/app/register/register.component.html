@@ -168,9 +168,32 @@
         InValid Formate
       </mat-error>
     </ng-container>
+
+    <mat-error
+      *ngIf="
+        formRegister.errors &&
+        formRegister.errors.passwordsDontMatch &&
+        formRegister.get('password').touched &&
+        formRegister.get('confirmpassword').touched
+      "
+    >
+      passwords Shoud Match each other
+    </mat-error>
   </form>
-  <button mat-raised-button color="warn">reset</button>
-  <button mat-raised-button color="primary" (click)="register()">
+  <button
+    mat-raised-button
+    color="warn"
+    type="button"
+    (click)="formRegister.reset()"
+  >
+    reset
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="formRegister.invalid"
+    (click)="register()"
+  >
     Register
   </button>
   <span> have an account ? <a routerLink="/login"> Login </a> </span>

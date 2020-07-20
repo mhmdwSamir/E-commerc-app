@@ -19,14 +19,14 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(15),
         Validators.pattern(/^[a-zA-Z0-9]/),
       ]),
-      password: new FormControl(null, [
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(7),
         Validators.maxLength(15),
         Validators.pattern(/^[A-Za-z]\w{7,14}$/),
       ]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      confirmpassword: new FormControl(null, [
+      confirmpassword: new FormControl('', [
         Validators.required,
         Validators.minLength(7),
         Validators.maxLength(15),
@@ -45,6 +45,10 @@ export class RegisterComponent implements OnInit {
 
   register() {
     // call some method in service
+
+    if (this.formRegister.invalid) {
+      return;
+    }
     this._authService.register(this.formRegister.value).subscribe((data) => {
       console.log(data);
     });
