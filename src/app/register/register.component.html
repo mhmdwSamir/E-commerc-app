@@ -58,12 +58,12 @@
       </mat-error>
 
       <mat-error *ngIf="formRegister.get('email').errors.email">
-        *invalid Email
+        invalid Email
       </mat-error>
     </ng-container>
 
     <mat-form-field class="inputfeild">
-      <mat-label>*Password</mat-label>
+      <mat-label>Password</mat-label>
       <input
         matInput
         [type]="hide ? 'password' : 'text'"
@@ -71,16 +71,15 @@
         formControlName="password"
         placeholder="Your Password"
       />
-      <!-- <button
+      <button
         mat-icon-button
         matSuffix
         (click)="hide = !hide"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide"
-      > 
+      >
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-      </button> 
-      -->
+      </button>
     </mat-form-field>
     <ng-container
       *ngIf="
@@ -89,27 +88,27 @@
       "
     >
       <mat-error *ngIf="formRegister.get('password').errors.required">
-        *Password Feild is required
+        Password Feild is required
       </mat-error>
 
       <mat-error
         *ngIf="formRegister.get('password').errors.minlength as minLengthError"
       >
-        *password Should be at least {{ minLengthError.requiredLength }} but you
+        password Should be at least {{ minLengthError.requiredLength }} but you
         entered
         {{ minLengthError.actualLength }}
       </mat-error>
       <mat-error
         *ngIf="formRegister.get('password').errors.maxlength as maxLengthError"
       >
-        *password Should be at most {{ maxLengthError.requiredLength }} but you
+        password Should be at most {{ maxLengthError.requiredLength }} but you
         entered
         {{ maxLengthError.actualLength }}
       </mat-error>
       <mat-error
         *ngIf="formRegister.get('password').errors.pattern as patternError"
       >
-        *InValid Formate
+        InValid Formate
       </mat-error>
     </ng-container>
   </form>
