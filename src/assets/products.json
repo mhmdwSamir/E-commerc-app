@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "product 1",
+    "product-img": "https://www.placehold.it/100/eee",
+    "price": 150
+  },
+  {
+    "id": 2,
+    "name": "product 2",
+    "product-img": "https://www.placehold.it/100/aaa",
+    "price": 180
+  },
+  {
+    "id": 3,
+    "name": "product 3",
+    "product-img": "https://www.placehold.it/100/ggg",
+    "price": 190
+  },
+  {
+    "id": 4,
+    "name": "product 4",
+    "product-img": "https://www.placehold.it/100/ddd",
+    "price": 110
+  }
+]
