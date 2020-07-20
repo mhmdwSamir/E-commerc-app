@@ -173,7 +173,7 @@
   <button mat-raised-button color="primary" (click)="register()">
     Register
   </button>
-  <span> already have an account ? <a routerLink="/login"> Login </a> </span>
+  <span> have an account ? <a routerLink="/login"> Login </a> </span>
 </mat-card>
 
-{{ formRegister.get("name").errors | json }}
+{{ formRegister.errors | json }}

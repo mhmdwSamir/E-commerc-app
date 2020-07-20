@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
 import { Router } from '@angular/router';
+import { MatchPassword } from '../@acore/validators/match-password';
 
 @Component({
   selector: 'app-register',
@@ -10,28 +11,35 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   hide = true;
-  formRegister = new FormGroup({
-    name: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(15),
-      Validators.pattern(/^[a-zA-Z0-9]/),
-    ]),
-    password: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(7),
-      Validators.maxLength(15),
-      Validators.pattern(/^[A-Za-z]\w{7,14}$/),
-    ]),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    confirmpassword: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(7),
-      Validators.maxLength(15),
-      Validators.pattern(/^[A-Za-z]\w{7,14}$/),
-    ]),
-  });
-  constructor(private _authService: AuthService, private router: Router) {}
+  formRegister = new FormGroup(
+    {
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(15),
+        Validators.pattern(/^[a-zA-Z0-9]/),
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(7),
+        Validators.maxLength(15),
+        Validators.pattern(/^[A-Za-z]\w{7,14}$/),
+      ]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      confirmpassword: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(7),
+        Validators.maxLength(15),
+        Validators.pattern(/^[A-Za-z]\w{7,14}$/),
+      ]),
+    },
+    { validators: [this._matchPassword.validate] }
+  );
+  constructor(
+    private _authService: AuthService,
+    private router: Router,
+    private _matchPassword: MatchPassword
+  ) {}
 
   ngOnInit(): void {}
 
