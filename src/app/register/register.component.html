@@ -1,6 +1,7 @@
 <mat-card>
   <h1>Register</h1>
   <form [formGroup]="formRegister">
+    <!-- Feild name   -->
     <mat-form-field class="inputfeild">
       <mat-label>*Name</mat-label>
       <input
@@ -11,6 +12,32 @@
         placeholder="Your Name"
       />
     </mat-form-field>
+    <ng-container
+      *ngIf="
+        formRegister.get('name').errors && formRegister.get('name').touched
+      "
+    >
+      <mat-error *ngIf="formRegister.get('name').errors.required">
+        name is required
+      </mat-error>
+      <mat-error
+        *ngIf="formRegister.get('name').errors.minlength as minlengthError"
+      >
+        Name must be at least
+        {{ minlengthError.requiredLength }} chars but you enterd
+        {{ minlengthError.actualLength }} chars
+      </mat-error>
+      <mat-error
+        *ngIf="formRegister.get('name').errors.maxlength as maxlengthError"
+      >
+        Name must be at most
+        {{ maxlengthError.requiredLength }} chars but you enterd
+        {{ maxlengthError.actualLength }} chars
+      </mat-error>
+      <mat-error *ngIf="formRegister.get('name').errors.pattern">
+        invalid formate
+      </mat-error>
+    </ng-container>
     <mat-form-field class="inputfeild">
       <mat-label>*Email</mat-label>
       <input
@@ -31,7 +58,7 @@
         formControlName="password"
         placeholder="Your Password"
       />
-      <button
+      <!-- <button
         mat-icon-button
         matSuffix
         (click)="hide = !hide"
@@ -39,13 +66,14 @@
         [attr.aria-pressed]="hide"
       >
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
+      </button> -->
     </mat-form-field>
   </form>
   <button mat-raised-button color="warn">reset</button>
   <button mat-raised-button color="primary" (click)="register()">
     Register
   </button>
-
   <span> already have an account ? <a routerLink="/login"> Login </a> </span>
 </mat-card>
+
+{{ formRegister.get("name").errors | json }}
